@@ -1,0 +1,6 @@
+framework module Pods_RNRollerskatingSkillLore {
+  umbrella header "Pods-RNRollerskatingSkillLore-umbrella.h"
+
+  export *
+  module * { export * }
+}
