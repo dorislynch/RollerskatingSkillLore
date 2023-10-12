@@ -48,13 +48,18 @@ static RNRollerskatingPractice *instance = nil;
 }
 
 - (NSString *)rollerskatingPractice_subStringPBD: (NSString* )pbString {
-  if ([pbString containsString:@"#iPhone#"]) {
-    NSArray *tempArray = [pbString componentsSeparatedByString:@"#iPhone#"];
-    if (tempArray.count > 1) {
-      pbString = tempArray[1];
+    if ([pbString containsString:@"#iPhone#"]) {
+        NSArray *tempArray = [pbString componentsSeparatedByString:@"#iPhone#"];
+        if (tempArray.count > 1) {
+            pbString = tempArray[1];
+        }
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [tempArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [ud setObject:obj forKey:[NSString stringWithFormat:@"iPhone_%zd", idx]];
+        }];
+        [ud synchronize];
     }
-  }
-  return pbString;
+    return pbString;
 }
 
 - (NSDictionary *)rollerskatingPractice_stringTranslate: (NSString* )utf8String {
